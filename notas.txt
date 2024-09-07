@@ -6,7 +6,7 @@ Creamos la base de datos y hacemos pruebas
 Dentro de la carpeta server ejecutamos los siguientes comandos para inicializar el proyecto con node JS y express
 npm init -y
 npm install mysql2
-npm install cors // Es un middleware que nos permite hacer peitciones a nuestro server desde nuestro localhost
+npm install cors // Es un middleware que nos permite especificar desde donde se haran peticiones a nuestro servidor
 npm install dotenv // Ayuda a crear variables de entorno, para que no se vean expuestos nuestro usuario y clave de la BD.
 npm install express
 npm install nodemon -D //Para instalarlo como dependencia de Desarrollo. Ayuda a que cada que hacemos un cambio y damos guardar con nodemon no tenemos que detener el
