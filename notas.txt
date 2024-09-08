@@ -17,3 +17,10 @@ Modificar el Script
  "scripts": {
     "dev": "npx nodemon app.js"
   },
+
+//Libreria para crear el modal
+npm install @gorhom/bottom-sheet
+npx expo install react-native-reanimated react-native-gesture-handler
+
+Configuracion en Babel config
+plugins: ["react-native-reanimated/plugin"]
