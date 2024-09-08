@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
-import { Keyboard, View, Text, StyleSheet, Button, Alert } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
-export function SharedTodoModalContent({
-  id,
-  title,
-  shared_with_id,
-  completed,
-}) {
+export function SharedTodoModalContent({ id, title, completed }) {
   const [author, setAuthor] = useState({});
   const [sharedWith, setSharedWith] = useState({});
   useEffect(() => {

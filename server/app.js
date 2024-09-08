@@ -10,11 +10,11 @@ import {
   getUserByID,
   getSharedTodoByID,
 } from "./database.js";
-import bodyParser from "body-parser";
+//import bodyParser from "body-parser";
 import cors from "cors";
 
 const corsOption = {
-  origin: "http://127.0.0.1:5173", // specify the allowed origin
+  origin: "*", // specify the allowed origin
   methods: ["POST", "GET"], // specify the allowed methos
   credentials: true, // allow sending credentials (cookies, authentication)
 };
@@ -51,12 +51,35 @@ app.delete("/todos/:id", async (req, res) => {
   res.send({ message: "Todo deleted successfully" });
 });
 
-app.post("/todos/shared_todos", async (req, res) => {
+/* app.post("/todos/shared_todos", async (req, res) => {
   const { todo_id, user_id, email } = req.body;
   // const { todo_id, user_id, shared_with_id } = req.body;
   const userToShare = await getUserByEmail(email);
   const sharedTodo = await shareTodo(todo_id, user_id, userToShare.id);
   res.status(201).send(sharedTodo);
+}); */
+
+app.post("/todos/shared_todos", async (req, res) => {
+  try {
+    const { todo_id, user_id, email } = req.body;
+    const userToShare = await getUserByEmail(email);
+
+    if (!userToShare) {
+      return res.status(404).send({ error: "User not found" });
+    }
+
+    const sharedTodo = await shareTodo(todo_id, user_id, userToShare.id);
+    console.log(sharedTodo);
+
+    if (!sharedTodo) {
+      return res.status(400).send({ error: "Failed to share todo" });
+    }
+
+    res.status(201).send({ sharedTodo });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: "An internal server error occurred" });
+  }
 });
 
 app.post("/todos", async (req, res) => {

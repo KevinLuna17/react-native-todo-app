@@ -4,6 +4,7 @@ import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { Task } from "./components/Task";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { InputTask } from "./components/InputTask";
 
 export default function App() {
   const [todos, setTodos] = useState([]);
@@ -57,6 +58,7 @@ export default function App() {
             )}
             ListHeaderComponent={<Text style={styles.titleHeader}>Today</Text>}
           />
+          <InputTask todos={todos} setTodos={setTodos} />
         </SafeAreaView>
       </BottomSheetModalProvider>
     </GestureHandlerRootView>

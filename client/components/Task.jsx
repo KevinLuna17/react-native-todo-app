@@ -14,6 +14,9 @@ import { TodoModalContent } from "./TodoModalContent";
 function CheckMark({ id, completed, toggleTodo }) {
   async function toggle() {
     const response = await fetch(`http://192.168.100.4:8080/todos/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
       method: "PUT",
       body: JSON.stringify({
         value: completed ? false : true,

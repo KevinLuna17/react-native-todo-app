@@ -47,7 +47,6 @@ export async function getUserByEmail(email) {
   const [rows] = await pool.query(`SELECT * FROM users WHERE email = ?`, [
     email,
   ]);
-  // console.log(rows[0]);
   return rows[0];
 }
 
